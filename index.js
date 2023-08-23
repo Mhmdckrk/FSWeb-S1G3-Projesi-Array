@@ -40,8 +40,26 @@ Aşağıdakileri yapmak için aşağıdaki kopyalama işlevini kullanın:
 */
 
 
-function kopyala(/*kod buraya*/){
+function kopyala(/*kod buraya*/birDizi){
   /*kod buraya*/
+  //var cloneDizi = birDizi; bu dizi ve objelerde yok pointer yapıyor
+  // serpme işlemi 3 nokta orjinal adımda değişiyor bunu yapmazsak.
+  // 5 satıra git--- bu yanlış
+  // çözüm alternatif 1
+  const cloneDizi = [...birDizi];
+
+
+  // çözüm 2
+  /*
+  const cloneDizi = []
+  for ()
+  */
+
+  // spread operator
+  // sıfırdan yeni bir dizi oluşturuyor
+  // yeni bir kutu aç eski kutudaki verileri içine dök
+  return cloneDizi;
+
 }
 
 
@@ -56,8 +74,15 @@ Bir dizinin tam olarak 25 çeşit olduğunu onaylayın. İşleviniz şunları ka
 */
 
 
-function dizi25Cesitmi(/*kod buraya*/){
+function dizi25Cesitmi(birDizi){
   /*kod buraya*/
+
+  if (birDizi.length===25) {
+    return true;
+  } else {
+    return false;
+  }
+
 }
 
 
@@ -74,10 +99,14 @@ Aşağıdakileri yapmak için cesitEkle işlevini kullanın:
 */
 
 
-function cesitEkle(/*kod buraya*/){
+
+function cesitEkle(/*kod buraya*/birDizi, birTat){
   /*kod buraya*/
+  birDizi.unshift(birTat);
+  return birDizi;
 }
 
+console.log ("G3", cesitEkle(orijinalTatlar, "Kakule"));
 
 /* Cörev 4:
 
@@ -92,7 +121,9 @@ Aşağıdakileri yapmak için sonCesitiKaldir işlevini kullanın:
 */
 
 
-function sonCesitiKaldir(/*kod buraya*/){
+function sonCesitiKaldir(/*kod buraya*/birDizi){
+  birDizi.pop();
+  return birDizi;
   /*kod buraya*/
 }
 
@@ -105,11 +136,12 @@ Aşağıdakileri yapmak için aşağıdaki indekstekiCesitiGetir işlevini kulla
    2. İkinci parametrede argüman olarak istenen dizini alacak bir sayı alın
    3. Verilen indekste bulunan çeşiti döndürün
 
-   Örneğin: indekstekiCesitiGetir(orijinalTatlar, 2) çalıştırılmasıyla, Kakule'in başarıyla eklendiği varsayarsak sonuç "Ceviz" olucaktır.
+   Örneğin: indekstekiCesitiGetir(orijinalTatlar, 3) çalıştırılmasıyla, Kakule'in başarıyla eklendiği varsayarsak sonuç "Ceviz" olucaktır.
 */
 
-function indekstekiCesitiGetir(/*kod buraya*/){
+function indekstekiCesitiGetir(birDizi, birIndex){
   /*kod buraya*/
+  return birDizi[birIndex];
 }
 
 
@@ -128,8 +160,14 @@ Aşağıdakileri yapmak için ismeGoreCesitCikar işlevini kullanın:
   İPUCU: Bunun için .splice() kullanabilirsiniz.
 */
 
-function ismeGoreCesitCikar(/*kod buraya*/){
-  /*kod buraya*/
+
+function ismeGoreCesitCikar(dizi,name){
+  for(let i = 0; i < dizi.length; i++){
+    if (dizi[i] === name){
+      dizi.splice(i,1);
+    }
+  }
+  return dizi;
 }
 
 
@@ -154,8 +192,16 @@ Aşağıdakileri yapmak için ismeGoreFiltrele işlevini kullanın:
 */
 
 
-function ismeGoreFiltrele(/*kod buraya*/){
+function ismeGoreFiltrele(/*kod buraya*/birDizi, birTat){
   /*kod buraya*/
+  const yeniDizi = [];
+  for (let i = 0; i < birDizi.length; i++) {
+    if(birDizi[i].includes(birTat)){
+      yeniDizi.push(birDizi[i]);
+    }
+    
+  }
+  return yeniDizi;
 }
 
 
@@ -172,8 +218,14 @@ Aşağıdakileri yapmak için ortalamaKelimeSayisi işlevini kullanın:
    Örneğin: ortalamaKelimeSayisi(orijinalTatlar) 0 ile 2 arasında bir sayı döndürmelidir.
 */
 
-function ortalamaKelimeSayisi(/*kod buraya*/){
-  /*kod buraya*/
+
+
+
+
+function ortalamaKelimeSayisi(/*kod buraya*/birDizi){
+
+  return (birDizi.join(" ").split(" ").length / birDizi.length);
+
 }
 
 
@@ -190,8 +242,17 @@ Aşağıdakileri yapmak için rastgeleTatlar işlevini ve yeni dizileri kullanı
 */
 
 
-function rastgeleTatlar(/*kod buraya*/){
+function rastgeleTatlar(/*kod buraya*/tatlarBir, tatlarIki,tatlarUc,tatlarDort) {
   /*kod buraya*/
+  const rastgeleTatlar = [];
+
+  for (let i = 0; i < 25; index++) {
+    const butunTatlar = [...tatlarBir, ...tatlarIki, ...tatlarUc, ...tatlarDort]
+    Math.floor(Math.random()*butunTatlar.length)
+    
+  }
+
+
 }
 
 // NEW DATA ARRAYS FOR STRETCH 2 ⬇️
@@ -232,6 +293,10 @@ function rastgeleTatlar(/*kod buraya*/){
 // "Karamel"
 // ]
 
+/*console.log(
+  "G Bonus 2: ", rastgeleTatlar(orijinalTatlar, yeniTatlar)
+)
+*/
 
 /* Lütfen bu satırın altındaki hiçbir şeyi değiştirmeyin */
 function sa(){
